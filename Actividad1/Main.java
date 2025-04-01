@@ -27,7 +27,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "El DNI no es válido.");
                     continue;
                 }
-                String numeroTarjeta = JOptionPane.showInputDialog("Ingrese el numero de tarjeta del cliente:");
+                String numeroTarjeta = JOptionPane.showInputDialog("Ingrese el numero de cuenta bancaria (formato: xxxx-xxxx-xxxxxxxx)");
                 // VAMOS A COMPROBAR SI NUMERO DE TARJETA ESTA BIEN
                 regex = "^(\\d{4}[-\\s]?){3}\\d{4}$";
                 pattern = Pattern.compile(regex);
