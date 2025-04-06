@@ -43,7 +43,10 @@ public class Cliente extends Persona {
 
     @Override
     public String toString() {
-        return "Cliente [numeroTarjeta=" + numeroTarjeta + "]";
+        return "Nombre: " + nombre  + " " + apellido+ "\nNumero tarjeta: " + numeroTarjeta
+                + "\nDocumento: " + documento;
     }
+
+    
 
 }
