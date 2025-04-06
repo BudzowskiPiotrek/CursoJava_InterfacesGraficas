@@ -1,9 +1,9 @@
 package CursoJava_InterfacesGraficas.Actividad1;
 
 public abstract class Persona {
-    private String nombre;
-    private String apellido;
-    private String documento;
+    protected String nombre;
+    protected String apellido;
+    protected String documento;
 
     public Persona(String nombre, String apellido, String documento) {
         this.nombre = nombre;
