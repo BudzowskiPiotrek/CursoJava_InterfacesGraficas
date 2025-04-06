@@ -125,7 +125,7 @@ public class Main {
             int numeroHabitacion = Integer.parseInt(numeroHabitacionString);
 
             // COMPROBAMOS SI NUMERO DE HABITACION EXISTE
-            if (numeroHabitacion < 1 || numeroHabitacion > 10) {
+            if (numeroHabitacion <= 1 || numeroHabitacion >= 10) {
                 JOptionPane.showMessageDialog(null, "Número de habitación inválido.");
                 return null;
             }
