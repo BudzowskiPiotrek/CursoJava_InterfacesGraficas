@@ -65,6 +65,15 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Reservas actuales:\n" + reservasList);
     }
 
+    // METODO SI PULSAS CANCELAR O X NO AVANZA
+    public static String pedirEntrada(String mensaje) {
+        String input = JOptionPane.showInputDialog(mensaje);
+        if (input == null) {
+            JOptionPane.showMessageDialog(null, "Volviendo al menu de la super App @Cristobal 2025");
+        }
+        return input;
+    }
+
     // METODO CREAR CLIENTE
     public static Cliente crearCliente() {
 
@@ -155,14 +164,6 @@ public class Main {
         }
 
         return null; // En caso de error, retornamos null
-    }
-
-    public static String pedirEntrada(String mensaje) {
-        String input = JOptionPane.showInputDialog(mensaje);
-        if (input == null) {
-            JOptionPane.showMessageDialog(null, "Volviendo al menu de la super App @Cristobal 2025");
-        }
-        return input;
     }
 
     public static void agregarDosReservasDePrueba(Hotel hotel) {
