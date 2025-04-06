@@ -4,8 +4,7 @@ public class Habitacion {
     private int numero;
     private Tipos tipos;
     private int precio;
-    private static int contador=1;
-    
+    private static int contador = 1;
 
     public Habitacion(Tipos tipos, int precio) {
         this.numero = contador;
@@ -65,7 +64,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion [numero=" + numero + ", tipos=" + tipos + "]";
+        return "Habitacion num: " + numero + ", tipos: " + tipos;
     }
 
     public static int getContador() {
