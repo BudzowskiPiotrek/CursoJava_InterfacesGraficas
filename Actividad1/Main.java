@@ -9,52 +9,58 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class Main {
-    public static void main(String[] args) {
-        Hotel hotel = new Hotel();
-        agregarDosReservasDePrueba(hotel);
+    public static Hotel hotel = new Hotel();
 
-        while (true) {
+    public static void main(String[] args) {
+        agregarDosReservasDePrueba(hotel);
+        boolean flag = true;
+
+        while (flag) {
             String menu = "Bienvenido al menu del usuario:\n" +
                     "1. Añadir reserva\n" +
                     "2. Ver reservas\n" +
                     "3. Salir";
             int seleccion = Integer.parseInt(JOptionPane.showInputDialog(menu));
-
-            switch (seleccion) {
-                case 1:
-                    // CREAMOS CLIENTE LLAMANDO METODO CREARCLIENTE
-                    Cliente cliente = crearCliente();
-                    if (cliente == null)
-                        continue; // Si no se creó el cliente, volvemos al menú
-
-                    // CREAMOS RESERVA LLAMANDO METODO CREARRESERVA
-                    Reservas reserva = crearReserva(hotel, cliente);
-                    if (reserva != null) {
-                        hotel.getReservas().add(reserva); // Añadimos la reserva al hotel
-                    }
-                    break;
-
-                case 2:
-                    // Mostrar las reservas
-                    String reservasList = "";
-                    for (Reservas reservaMostrar : hotel.getReservas()) {
-                        reservasList += reservaMostrar.toString() + "\n";
-                    }
-                    JOptionPane.showMessageDialog(null, "Reservas actuales:\n" + reservasList);
-                    break;
-
-                case 3:
-                    // Salir del programa
-                    JOptionPane.showMessageDialog(null, "¡Gracias por usar el sistema! Adiós.");
-                    return;
-
-                default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida. Por favor, 1,2 o 3");
-                    break;
-            }
+            flag = menuSwitch(seleccion, flag);
         }
     }
- 
+
+    private static boolean menuSwitch(int seleccion, boolean flag) {
+        switch (seleccion) {
+            case 1:
+                // CREAMOS CLIENTE LLAMANDO METODO CREARCLIENTE
+                Cliente cliente = crearCliente();
+                if (cliente == null)
+                    return true; // SI NO SE CREA CLIENTE AL MENU
+
+                // CREAMOS RESERVA LLAMANDO METODO CREARRESERVA
+                Reservas reserva = crearReserva(cliente);
+                if (reserva != null) {
+                    hotel.getReservas().add(reserva); // Añadimos la reserva al hotel
+                }
+                break;
+            case 2:
+                mostrarResevas();
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "¡Gracias por usar mi Super App!");
+                return false;
+            default:
+                JOptionPane.showMessageDialog(null, "Opción no válida. Por favor, 1,2 o 3");
+                break;
+        }
+        return true;
+    }
+
+    // METODO PARA MOSTRAR RESERVAS
+    private static void mostrarResevas() {
+        String reservasList = "";
+        for (Reservas reservaMostrar : hotel.getReservas()) {
+            reservasList += reservaMostrar.toString() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, "Reservas actuales:\n" + reservasList);
+    }
+
     // METODO CREAR CLIENTE
     public static Cliente crearCliente() {
 
@@ -96,7 +102,7 @@ public class Main {
         return new Cliente(nombre, apellido, documento, numeroTarjeta);
     }
 
-    public static Reservas crearReserva(Hotel hotel, Cliente cliente) {
+    public static Reservas crearReserva(Cliente cliente) {
         try {
             String numeroHabitacionString = pedirEntrada("Ingrese el numero de la habitacion (1-10):");
             if (numeroHabitacionString == null)
