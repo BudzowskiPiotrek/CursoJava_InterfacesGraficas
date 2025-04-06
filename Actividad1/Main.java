@@ -6,6 +6,8 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -43,7 +45,9 @@ public class Main {
                 mostrarResevas();
                 break;
             case 3:
-                JOptionPane.showMessageDialog(null, "¡Gracias por usar mi Super App!");
+                Icon icono = new ImageIcon("yo.png");
+                JOptionPane.showMessageDialog(null, "¡Gracias por usar mi Super App!", "Bye Bye my Love",
+                        JOptionPane.INFORMATION_MESSAGE, icono);
                 return false;
             default:
                 JOptionPane.showMessageDialog(null, "Opción no válida. Por favor, 1,2 o 3");
