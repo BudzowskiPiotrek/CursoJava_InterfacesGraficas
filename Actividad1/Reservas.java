@@ -93,7 +93,7 @@ public class Reservas {
 
     @Override
     public String toString() {
-        return "Reservas [fechaStart=" + fechaStart + ", numDias=" + numDias + ", cliente=" + cliente + ", habitacion="
+        return "Reservas :\nFecha Inicio: " + fechaStart + "\nDias de la estancia: " + numDias + "\n" + cliente + "\n"
                 + habitacion + "]";
     }
 
