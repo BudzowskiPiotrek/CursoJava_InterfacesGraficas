@@ -12,3 +12,19 @@
     - Mostrar todas las reservas existentes y permitir seleccionar una para modificar o cancelar.
     - Utilizar colecciones para manejar las habitaciones y reservas eficientemente.
 3. **Interfaz de Usuario:** Utiliza JOptionPane para mostrar diálogos de entrada de datos, confirmaciones y mensajes de información o error.
+
+## Actividad 2
+- **Color de fondo:**
+    
+    Crea tres botones con colores (Azul, Verde y Rojo), al pulsar cada uno de ellos deberemos cambiar el fondo de nuestro panel.
+    
+- **Generador de números aleatorios:**
+    
+    Generador de números aleatorios. Tendremos una interfaz donde podremos añadir dos números y un boton para generar. Al generar nos generará unnúmero entre el numero más bajo de los introducidosy el más alto. El resultado se mostrara en un textArea
+    
+    
+- **Calculadora Versión Básica:**
+    
+    Diseña una Calculadora lo  más parecido a la calculadora de windows, utiliza para ello diferentes layout para diferentes paneles. 
+    
+    Dale funcionalidad a los botones más relevantes.
