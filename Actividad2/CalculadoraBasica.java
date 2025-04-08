@@ -194,19 +194,19 @@ public class CalculadoraBasica {
         Stack<Double> numeros = new Stack<>();
         Stack<Character> operadores = new Stack<>();
 
-        int i = 0;
-        while (i < cadena.length()) {
+        
+        for (int i = 0; i < cadena.length(); ) {
             char c = cadena.charAt(i);
-            if (Character.isDigit(c)) {
+                    if (Character.isDigit(c)) {
                 double num = 0;
-                while (i < cadena.length() && Character.isDigit(cadena.charAt(i))) {
+                        for (; i < cadena.length() && Character.isDigit(cadena.charAt(i)); i++) {
                     num = num * 10 + (cadena.charAt(i) - '0');
-                    i++;
                 }
-                numeros.push(num);
-            }
-            else if (c == '+' || c == '-' || c == '*' || c == '/') {
+                        numeros.push(num);
+            } else if (c == '+' || c == '-' || c == '*' || c == '/') {
                 operadores.push(c);
+                i++;
+            } else {
                 i++;
             }
         }
