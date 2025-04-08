@@ -15,7 +15,7 @@ public class CalculadoraBasica {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Calculadora que no respeta orden del calculo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(550, 400);
+        frame.setSize(300, 400);
 
         JPanel panel = new JPanel(new GridLayout(5, 0, 0, 0));
 
@@ -187,7 +187,6 @@ public class CalculadoraBasica {
                 resultado.setText(expresion.toString());
             }
         });
-
     }
 
     private static double evaluarExpresion(String cadena) {
@@ -206,9 +205,7 @@ public class CalculadoraBasica {
             } else if (c == '+' || c == '-' || c == '*' || c == '/') {
                 operadores.push(c);
                 i++;
-            } else {
-                i++;
-            }
+            } 
         }
 
         while (!operadores.isEmpty()) {
