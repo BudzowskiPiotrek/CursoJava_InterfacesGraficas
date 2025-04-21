@@ -20,13 +20,10 @@ public class Main {
 
         JPanel panelPrincipal = new JPanel(new BorderLayout());
         frame.add(panelPrincipal);
-        panelPrincipal.setBackground(Color.WHITE);
 
         // PANEL NORTE
         JPanel panelNorte = new JPanel(new GridLayout(6, 2, 5, 5));
         panelNorte.setPreferredSize(new Dimension(400, 300));
-        panelNorte.setBackground(Color.WHITE);
-        panelNorte.setForeground(Color.RED);
 
         JLabel nombreTexto = new JLabel("Introduce tu nombre:");
         JTextField nombre = new JTextField(20);
@@ -34,11 +31,11 @@ public class Main {
         JTextField apellido = new JTextField(20);
         JLabel generoTexto = new JLabel("Introduce tu genero:");
         JTextField genero = new JTextField(20);
-        JLabel usuarioTexto = new JLabel("Introduce tu nombre:");
+        JLabel usuarioTexto = new JLabel("Introduce tu usuario:");
         JTextField usuario = new JTextField(20);
-        JLabel contrasenaTexto = new JLabel("Introduce tu nombre:");
+        JLabel contrasenaTexto = new JLabel("Introduce tu contraseña:");
         JTextField contrasena = new JTextField(20);
-        JLabel telefonoTexto = new JLabel("Introduce tu nombre:");
+        JLabel telefonoTexto = new JLabel("Introduce tu telefono:");
         JTextField telefono = new JTextField(20);
 
         panelNorte.add(nombreTexto);
@@ -57,7 +54,6 @@ public class Main {
         // PANEL CENTRO
         JPanel panelCentro = new JPanel(new GridLayout(4, 1, 1, 1));
         panelCentro.setPreferredSize(new Dimension(400, 170));
-        panelCentro.setBackground(Color.WHITE);
         String[] destinos = {
                 "Elija su destino", "Argentina", "Brasil", "Canadá", "Chile",
                 "Colombia", "España", "Francia", "Italia", "México", "Perú"
@@ -75,7 +71,7 @@ public class Main {
         // PANEL SUR
         JPanel panelSur = new JPanel(new GridLayout(1, 3, 10, 0));
         panelSur.setPreferredSize(new Dimension(400, 30));
-        panelSur.setBackground(Color.WHITE);
+
         JButton modo = new JButton("Cambiar Modo");
         JButton enviar = new JButton("Enviar Datos");
         JButton borrar = new JButton("Borrar Datos");
@@ -83,13 +79,35 @@ public class Main {
         panelSur.add(enviar);
         panelSur.add(borrar);
 
-        // AGREGANDO TODO AL FRAME
+        coloresDiseno(panelPrincipal, panelNorte, panelCentro, panelSur,
+                nombreTexto, apellidoTexto, generoTexto, usuarioTexto,
+                contrasenaTexto, telefonoTexto,
+                vacunados, recien, autoinmune,
+                destino, Color.WHITE, Color.BLUE);
 
+        // AGREGANDO TODO AL FRAME
         panelPrincipal.add(panelNorte, BorderLayout.NORTH);
         panelPrincipal.add(panelCentro, BorderLayout.CENTER);
         panelPrincipal.add(panelSur, BorderLayout.SOUTH);
-
         frame.setVisible(true);
+
+
+        // FUNCIONES DE LOS BOTONES Y OTROS ESCUCHAS
+        borrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nombre.setText("");
+                apellido.setText("");
+                genero.setText("");
+                usuario.setText("");
+                contrasena.setText("");
+                telefono.setText("");
+                destino.setSelectedIndex(0);
+                vacunados.setSelected(false);
+                recien.setSelected(false);
+                autoinmune.setSelected(false);
+            }
+        });
 
         modo.addActionListener(new ActionListener() {
             @Override
@@ -104,19 +122,42 @@ public class Main {
                     nuevoFondo = Color.WHITE;
                     nuevoTexto = Color.BLUE;
                 }
+                coloresDiseno(panelPrincipal, panelNorte, panelCentro, panelSur,
+                        nombreTexto, apellidoTexto, generoTexto, usuarioTexto,
+                        contrasenaTexto, telefonoTexto,
+                        vacunados, recien, autoinmune,
+                        destino, nuevoFondo, nuevoTexto);
 
-                panelPrincipal.setBackground(nuevoFondo);
-                panelNorte.setBackground(nuevoFondo);
-                panelCentro.setBackground(nuevoFondo);
-                panelSur.setBackground(nuevoFondo);
-                nombreTexto.setForeground(nuevoTexto);
-                apellidoTexto.setForeground(nuevoTexto);
-                apellidoTexto.setForeground(nuevoTexto);
-                apellidoTexto.setForeground(nuevoTexto);
-                apellidoTexto.setForeground(nuevoTexto);
-                
             }
         });
+
+    }
+
+    public static void coloresDiseno(JPanel panelPrincipal, JPanel panelNorte, JPanel panelCentro, JPanel panelSur,
+            JLabel nombreTexto, JLabel apellidoTexto, JLabel generoTexto, JLabel usuarioTexto,
+            JLabel contrasenaTexto, JLabel telefonoTexto,
+            JCheckBox vacunados, JCheckBox recien, JCheckBox autoinmune,
+            JComboBox<String> destino, Color nuevoFondo, Color nuevoTexto) {
+
+        panelPrincipal.setBackground(nuevoFondo);
+        panelNorte.setBackground(nuevoFondo);
+        panelCentro.setBackground(nuevoFondo);
+        panelSur.setBackground(nuevoFondo);
+        vacunados.setBackground(nuevoFondo);
+        recien.setBackground(nuevoFondo);
+        autoinmune.setBackground(nuevoFondo);
+        destino.setBackground(nuevoFondo);
+
+        nombreTexto.setForeground(nuevoTexto);
+        apellidoTexto.setForeground(nuevoTexto);
+        generoTexto.setForeground(nuevoTexto);
+        usuarioTexto.setForeground(nuevoTexto);
+        contrasenaTexto.setForeground(nuevoTexto);
+        telefonoTexto.setForeground(nuevoTexto);
+        vacunados.setForeground(nuevoTexto);
+        recien.setForeground(nuevoTexto);
+        autoinmune.setForeground(nuevoTexto);
+        destino.setForeground(nuevoTexto);
 
     }
 
