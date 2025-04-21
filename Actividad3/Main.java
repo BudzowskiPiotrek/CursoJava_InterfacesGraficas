@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import java.awt.*;
@@ -17,7 +18,10 @@ public class Main {
         JFrame frame = new JFrame("Formulario de registro");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 600);
+        frame.setResizable(false);
 
+
+        // PANEL PRINCIPAL
         JPanel panelPrincipal = new JPanel(new BorderLayout());
         frame.add(panelPrincipal);
 
@@ -34,7 +38,7 @@ public class Main {
         JLabel usuarioTexto = new JLabel("Introduce tu usuario:");
         JTextField usuario = new JTextField(20);
         JLabel contrasenaTexto = new JLabel("Introduce tu contraseña:");
-        JTextField contrasena = new JTextField(20);
+        JPasswordField contrasena = new JPasswordField(20);
         JLabel telefonoTexto = new JLabel("Introduce tu telefono:");
         JTextField telefono = new JTextField(20);
 
@@ -52,7 +56,7 @@ public class Main {
         panelNorte.add(telefono);
 
         // PANEL CENTRO
-        JPanel panelCentro = new JPanel(new GridLayout(4, 1, 1, 1));
+        JPanel panelCentro = new JPanel(new GridLayout(4, 1, 5, 5));
         panelCentro.setPreferredSize(new Dimension(400, 170));
         String[] destinos = {
                 "Elija su destino", "Argentina", "Brasil", "Canadá", "Chile",
@@ -69,7 +73,7 @@ public class Main {
         panelCentro.add(autoinmune);
 
         // PANEL SUR
-        JPanel panelSur = new JPanel(new GridLayout(1, 3, 10, 0));
+        JPanel panelSur = new JPanel(new GridLayout(1, 3, 10, 5));
         panelSur.setPreferredSize(new Dimension(400, 30));
 
         JButton modo = new JButton("Cambiar Modo");
@@ -91,8 +95,9 @@ public class Main {
         panelPrincipal.add(panelSur, BorderLayout.SOUTH);
         frame.setVisible(true);
 
+        // VARIAS FUNCIONES DE LOS BOTONES Y OTROS ESCUCHAS
 
-        // FUNCIONES DE LOS BOTONES Y OTROS ESCUCHAS
+        // BORRAR
         borrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,6 +114,7 @@ public class Main {
             }
         });
 
+        // MODO DIA/NOCHE
         modo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,12 +133,101 @@ public class Main {
                         contrasenaTexto, telefonoTexto,
                         vacunados, recien, autoinmune,
                         destino, nuevoFondo, nuevoTexto);
+            }
+        });
 
+        // ENVIAR CON CAONVALIDAR TODOS LOS DATOS
+        enviar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nombreValor = nombre.getText().trim();
+                String apellidoValor = apellido.getText().trim();
+                String generoValor = genero.getText().trim().toLowerCase();
+                String usuarioValor = usuario.getText().trim();
+                String contrasenaValor = new String(((JPasswordField) contrasena).getPassword());
+                String telefonoValor = telefono.getText().trim();
+                String destinoValor = (String) destino.getSelectedItem();
+                StringBuilder vacunasTexto = new StringBuilder();
+
+                if (nombreValor.isEmpty()) {
+                    mostrarError("El campo nombre no puede estar vacio.");
+                    return;
+                }
+
+                if (!apellidoValor.matches("^[A-Za-zÁÉÍÓÚáéíóúñÑ]+\\s[A-Za-zÁÉÍÓÚáéíóúñÑ]+$")) {
+                    mostrarError("El apellido debe contener exactamente dos palabras separadas por un espacio.");
+                    return;
+                }
+
+                if (!generoValor.equals("masculino") && !generoValor.equals("femenino")
+                        && !generoValor.equals("no contestar")) {
+                    mostrarError("El genero debe ser Masculino, Femenino o No contestar.");
+                    return;
+                }
+
+                if (usuarioValor.isEmpty()) {
+                    mostrarError("El campo usuario no puede estar vacio.");
+                    return;
+                }
+
+                if (!telefonoValor.matches("\\d+")) {
+                    mostrarError("El teléfono debe contener solo numeros.");
+                    return;
+                }
+
+                if (destino.getSelectedIndex() == 0) {
+                    mostrarError("Debe elegir un destino.");
+                    return;
+                }
+
+                int opcionesElegidas = 0;
+                if (vacunados.isSelected()) {
+                    opcionesElegidas++;
+                    vacunasTexto.append("- Vacunado\n");
+                }
+
+                if (recien.isSelected()) {
+                    opcionesElegidas++;
+                    vacunasTexto.append("- Recien salio de enfermedad\n");
+                }
+
+                if (autoinmune.isSelected()) {
+                    opcionesElegidas++;
+                    vacunasTexto.append("- Autoinmune\n");
+                }
+
+                if (opcionesElegidas < 3) {
+                    mostrarError("Debe seleccionar al menos tres opciones de vacunas.");
+                    return;
+                }
+
+                StringBuilder comunicado = new StringBuilder();
+                comunicado.append("Repaso de tu registro:\n\n");
+                comunicado.append("Nombre: ").append(nombreValor).append("\n");
+                comunicado.append("Apellidos: ").append(apellidoValor).append("\n");
+                comunicado.append("Genero: ").append(generoValor).append("\n");
+                comunicado.append("Usuario: ").append(usuarioValor).append("\n");
+                comunicado.append("Contraseña: ").append(contrasenaValor).append("\n");
+                comunicado.append("Telefono: ").append(telefonoValor).append("\n");
+                comunicado.append("Destino: ").append(destinoValor).append("\n");
+                comunicado.append("Vacunas:\n").append(vacunasTexto);
+
+                javax.swing.JOptionPane.showMessageDialog(null, comunicado.toString(), "Datos Registrados",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
     }
 
+    // METODO PARA EN CUAL INGRESAS TEXTO Y TE COMUNICA EL ERROR PARA AHORAR CODIGO
+    private static void mostrarError(String mensaje) {
+        javax.swing.JOptionPane.showMessageDialog(null, mensaje, "Error de validación",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    // METODO PARA CAMBIAR DISEÑO DE LA APP, COMO LA UTILIZO TANTO EL
+    // ACCIONLISTENING Y EN EL MAIN
+    // RECOGE TODOS BOTONES Y DOS COLORES, UNO DE FONDO OTRO DE TEXTO
     public static void coloresDiseno(JPanel panelPrincipal, JPanel panelNorte, JPanel panelCentro, JPanel panelSur,
             JLabel nombreTexto, JLabel apellidoTexto, JLabel generoTexto, JLabel usuarioTexto,
             JLabel contrasenaTexto, JLabel telefonoTexto,
