@@ -20,7 +20,6 @@ public class Main {
         frame.setSize(600, 600);
         frame.setResizable(false);
 
-
         // PANEL PRINCIPAL
         JPanel panelPrincipal = new JPanel(new BorderLayout());
         frame.add(panelPrincipal);
@@ -114,28 +113,6 @@ public class Main {
             }
         });
 
-        // MODO DIA/NOCHE
-        modo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Color nuevoFondo;
-                Color nuevoTexto;
-
-                if (panelPrincipal.getBackground() == Color.WHITE) {
-                    nuevoFondo = Color.GRAY;
-                    nuevoTexto = Color.WHITE;
-                } else {
-                    nuevoFondo = Color.WHITE;
-                    nuevoTexto = Color.BLUE;
-                }
-                coloresDiseno(panelPrincipal, panelNorte, panelCentro, panelSur,
-                        nombreTexto, apellidoTexto, generoTexto, usuarioTexto,
-                        contrasenaTexto, telefonoTexto,
-                        vacunados, recien, autoinmune,
-                        destino, nuevoFondo, nuevoTexto);
-            }
-        });
-
         // ENVIAR CON CAONVALIDAR TODOS LOS DATOS
         enviar.addActionListener(new ActionListener() {
             @Override
@@ -211,12 +188,33 @@ public class Main {
                 comunicado.append("Telefono: ").append(telefonoValor).append("\n");
                 comunicado.append("Destino: ").append(destinoValor).append("\n");
                 comunicado.append("Vacunas:\n").append(vacunasTexto);
-
+                frame.setVisible(false);
                 javax.swing.JOptionPane.showMessageDialog(null, comunicado.toString(), "Datos Registrados",
                         javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
+        // MODO DIA/NOCHE
+        modo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Color nuevoFondo;
+                Color nuevoTexto;
+
+                if (panelPrincipal.getBackground() == Color.WHITE) {
+                    nuevoFondo = Color.GRAY;
+                    nuevoTexto = Color.WHITE;
+                } else {
+                    nuevoFondo = Color.WHITE;
+                    nuevoTexto = Color.BLUE;
+                }
+                coloresDiseno(panelPrincipal, panelNorte, panelCentro, panelSur,
+                        nombreTexto, apellidoTexto, generoTexto, usuarioTexto,
+                        contrasenaTexto, telefonoTexto,
+                        vacunados, recien, autoinmune,
+                        destino, nuevoFondo, nuevoTexto);
+            }
+        });
     }
 
     // METODO PARA EN CUAL INGRESAS TEXTO Y TE COMUNICA EL ERROR PARA AHORAR CODIGO
