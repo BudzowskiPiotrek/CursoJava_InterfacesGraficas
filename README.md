@@ -1,5 +1,5 @@
 # Curso de Java - Interfaces Graficos🎨🖥️
- 
+
 ## Actividad 1 : Sistema de Reservas de Habitaciones🏨📅
 
 **Objetivo:** 🎯  Crear una aplicación para gestionar reservas de habitaciones en un hotel utilizando JOptionPane para todas las interacciones con el usuario.
