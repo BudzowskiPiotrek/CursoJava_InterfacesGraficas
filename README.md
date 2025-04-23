@@ -47,8 +47,8 @@
 
 8. 💉 Vacunas ( CheckBox, Mínimo tres seleccionadas)
 
-9.🌗 Modo por defecto (Claro - Fondo Blanco y letras Azules // Oscuro - Fondo Gris oscuro y letras Blancas). Usar método setForeground(Color.color) para dar color al texto de los componentes de la interfaz de usuario.
+9. 🌗 Modo por defecto (Claro - Fondo Blanco y letras Azules // Oscuro - Fondo Gris oscuro y letras Blancas). Usar método setForeground(Color.color) para dar color al texto de los componentes de la interfaz de usuario.
 
-10.📤 Botón Enviar Datos: Cuando enviemos los datos se comprobará que todo esté completo con las especificaciones anteriores. Si todo está correcto se debe ocultar esta ventana y debe aparecer otra que recoja todos los datos del formulario.
+10. 📤 Botón Enviar Datos: Cuando enviemos los datos se comprobará que todo esté completo con las especificaciones anteriores. Si todo está correcto se debe ocultar esta ventana y debe aparecer otra que recoja todos los datos del formulario.
 
-11.🗑️ Botón Borrar Datos: Todos los campos quedarán en blanco y los campos con valor en los valores por defecto.
+11. 🗑️ Botón Borrar Datos: Todos los campos quedarán en blanco y los campos con valor en los valores por defecto.
